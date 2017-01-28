@@ -17,6 +17,9 @@ RUN \
   rm -rf /var/cache/yum/* && \
   chmod -R 0777 /var/log /run /config /NzbDrone
 
+# Needed for signalr to work (see https://forums.sonarr.tv/t/gui-update-issues/4195/31)
+ENV XDG_CONFIG_HOME=/config
+
 EXPOSE 8989
 
 VOLUME ["/config", "/data"]
