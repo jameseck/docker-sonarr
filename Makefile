@@ -29,7 +29,7 @@ SHELL=/bin/bash
 	push do-push post-push \
 	tests
 
-build: pre-build docker-build post-build
+build: pre-build docker-build .tests post-build
 
 pre-build:
 
@@ -39,11 +39,10 @@ post-build:
 
 post-push:
 
-tests:
-	pushd .
-	cd test && ./test.sh
-	popd
+tests: docker-build .tests
 
+.tests:
+	dgoss run -p 8989:8989 $(IMAGE):$(VERSION)
 
 docker-build: .release
 	docker build -t $(IMAGE):$(VERSION) .
