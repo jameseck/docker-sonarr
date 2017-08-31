@@ -14,7 +14,7 @@ RUN \
   curl -L http://update.sonarr.tv/v2/master/mono/NzbDrone.master.tar.gz -o /tmp/NzbDrone.master.tar.gz && \
   tar -xvf /tmp/NzbDrone.master.tar.gz -C / && \
   rm -f NzbDrone.master.tar.gz && \
-  rm -rf /var/cache/yum/* && \
+  rm -rf /var/cache/yum/* >/dev/null 2>&1 || true && \
   chmod -R 0777 /var/log /run /config /NzbDrone
 
 # Needed for signalr to work (see https://forums.sonarr.tv/t/gui-update-issues/4195/31)
