@@ -17,6 +17,8 @@ REGISTRY_HOST=docker.io
 USERNAME=jameseckersall
 NAME=$(shell basename $(PWD) | sed -e 's/docker-//g')
 
+GOSS_WAIT=5
+
 RELEASE_SUPPORT := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))/.make-release-support
 IMAGE=$(REGISTRY_HOST)/$(USERNAME)/$(NAME)
 

@@ -9,8 +9,8 @@ process:
   mono:
     running: true
 http:
-  http://localhost:8989:
+  "http://localhost:8989/login?returnUrl=/":
     status: 200
     timeout: 1000
     body:
-    - '<title>Sonarr</title>'
+    - '<title>Sonarr - Login</title>'
