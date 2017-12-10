@@ -20,7 +20,9 @@ if [ ! -f $CONFIG_FILE ]; then
 </Config>
 EOF
 else
-  sed -i -e "s/\(<ApiKey>\).*\(<\/ApiKey>\)/\1${API_KEY}\2/" $CONFIG_FILE
+  if [ -z "${API_KEY}" ]; then
+    sed -i -e "s/\(<ApiKey>\).*\(<\/ApiKey>\)/\1${API_KEY}\2/" $CONFIG_FILE
+  fi
 fi
 
 exec /usr/bin/mono /NzbDrone/NzbDrone.exe -nobrowser -data=/config
