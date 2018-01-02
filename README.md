@@ -1,1 +1,1 @@
-# docker-sonarr-centos
+# docker-sonarr
