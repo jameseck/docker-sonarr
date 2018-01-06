@@ -47,7 +47,7 @@ tests: docker-build .tests
 	dgoss run -p 8989:8989 $(IMAGE):$(VERSION)
 
 docker-build: .release
-	docker build -t $(IMAGE):$(VERSION) .
+	docker build --no-cache -t $(IMAGE):$(VERSION) .
 	@DOCKER_MAJOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f1) ; \
 	DOCKER_MINOR=$(shell docker -v | sed -e 's/.*version //' -e 's/,.*//' | cut -d\. -f2) ; \
 	if [ $$DOCKER_MAJOR -eq 1 ] && [ $$DOCKER_MINOR -lt 10 ] ; then \
