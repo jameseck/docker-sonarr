@@ -8,7 +8,8 @@ RUN \
   yum-config-manager --add-repo http://download.mono-project.com/repo/centos/ && \
   yum install -y curl gettext libmediainfo libzen mediainfo mono-core mono-devel sqlite.x86_64 wget && \
   yum clean all && \
-  rm -rf /var/cache/yum/* && \
+  rm -rf /var/cache/yum/*
+RUN \
   mkdir --mode=0777 /config && \
   curl -L http://update.sonarr.tv/v2/master/mono/NzbDrone.master.tar.gz -o /tmp/NzbDrone.master.tar.gz && \
   tar -xvf /tmp/NzbDrone.master.tar.gz -C / && \
