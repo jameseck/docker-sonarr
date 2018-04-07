@@ -2,7 +2,7 @@ version: '2'
 services:
   sonarr:
     build: .
-    image: jameseckersall/sonarr-centos
+    image: jameseckersall/sonarr
     user: "100000:100000"
     ports:
     - 8989:8989
