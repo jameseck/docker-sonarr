@@ -2,8 +2,8 @@ FROM centos:7
 
 MAINTAINER James Eckersall <james.eckersall@gmail.com>
 
-ARG SONARR_VERSION=blah
-ARG SONARR_URL=blah
+ARG SONARR_VERSION=2.0.0.5163
+ARG SONARR_URL=http://download.sonarr.tv/v2/master/mono/NzbDrone.master.2.0.0.5163.mono.tar.gz
 
 RUN \
   yum install -y epel-release yum-utils && \
