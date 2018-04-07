@@ -2,6 +2,9 @@ FROM centos:7
 
 MAINTAINER James Eckersall <james.eckersall@gmail.com>
 
+ARG SONARR_VERSION=blah
+ARG SONARR_URL=blah
+
 RUN \
   yum install -y epel-release yum-utils && \
   rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" && \
@@ -11,7 +14,7 @@ RUN \
   rm -rf /var/cache/yum/*
 RUN \
   mkdir --mode=0777 /config && \
-  curl -L http://update.sonarr.tv/v2/master/mono/NzbDrone.master.tar.gz -o /tmp/NzbDrone.master.tar.gz && \
+  curl -L "${SONARR_URL}" -o /tmp/NzbDrone.master.tar.gz && \
   tar -xvf /tmp/NzbDrone.master.tar.gz -C / && \
   rm -f NzbDrone.master.tar.gz && \
   chmod -R 0775 /var/log /config /NzbDrone
