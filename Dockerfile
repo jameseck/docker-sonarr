@@ -31,5 +31,4 @@ EXPOSE 8989
 
 VOLUME ["/config", "/data"]
 
-#ENTRYPOINT [ "/usr/bin/mono", "/NzbDrone/NzbDrone.exe", "-nobrowser", "-data=/config" ]
 ENTRYPOINT [ "/run.sh" ]
