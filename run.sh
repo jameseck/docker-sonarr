@@ -12,7 +12,7 @@ if [ ! -f $CONFIG_FILE ]; then
 <SslPort>9898</SslPort>
 <EnableSsl>False</EnableSsl>
 <ApiKey>${API_KEY}</ApiKey>
-<AuthenticationMethod>Forms</AuthenticationMethod>
+<AuthenticationMethod>None</AuthenticationMethod>
 <Branch>master</Branch>
 <LaunchBrowser>False</LaunchBrowser>
 <SslCertHash></SslCertHash>
