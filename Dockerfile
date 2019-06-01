@@ -19,8 +19,7 @@ RUN \
   rm -f NzbDrone.master.tar.gz && \
   chmod -R 0775 /var/log /config /NzbDrone
 
-COPY run.sh /run.sh
-RUN chmod 0755 /run.sh
+COPY run.py /run.py
 
 # Needed for signalr to work (see https://forums.sonarr.tv/t/gui-update-issues/4195/31)
 ENV \
@@ -31,4 +30,4 @@ EXPOSE 8989
 
 VOLUME ["/config", "/data"]
 
-ENTRYPOINT [ "/run.sh" ]
+ENTRYPOINT ["/usr/bin/python2", "/run.py"]

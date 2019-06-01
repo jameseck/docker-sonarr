@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+if [ "$1" == "--check" ] || [ "$1" == "-c" ]; then
+  CHECKONLY=true
+fi
+
 # Latest stable release
 FILE="$(curl http://download.sonarr.tv/v2/master/mono/ | grep -Eo ">NzbDrone.master.[0-9\.]+.mono.tar.gz<" | sed -e 's/[<>]//g' | tail -n 1)"
 URL="http://download.sonarr.tv/v2/master/mono/${FILE}"
@@ -12,6 +16,13 @@ git pull > /dev/null 2>&1
 DOCKERFILE_VERSION=$(grep "^ARG SONARR_VERSION=" Dockerfile | cut -f2 -d\=)
 
 if [ "${VERSION}" != "${DOCKERFILE_VERSION}" ]; then
+  if [ "${CHECKONLY}" == "true" ]; then
+    echo "There is a new version available"
+    echo "Current version: ${DOCKERFILE_VERSION}"
+    echo "Available version: ${VERSION}"
+    exit 0
+  fi
+
   echo "Updating Dockerfile with version ${VERSION}"
   sed -i -e "s/^\(ARG SONARR_VERSION=\).*$/\1${VERSION}/g" \
          -e "s|^\(ARG SONARR_URL=\).*$|\1${URL}|g" Dockerfile
